@@ -1,32 +1,30 @@
 import "./Services.css";
+import albums from "../../data/albums.json";
+
+const albumCovers = import.meta.glob("../../assets/cover/*.png", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+const getAlbumCover = (coverPath) => {
+  return albumCovers[`../../assets/cover/${coverPath}`];
+};
 
 export const ServicesPage = () => {
   return (
-    <section className="services-list">
-      <article className="service-article">
-        <h2>Article</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
-          non reprehenderit illum, minima nihil laborum fuga asperiores alias
-          eum at!
-        </p>
-      </article>
-      <article className="service-article">
-        <h2>Article</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
-          non reprehenderit illum, minima nihil laborum fuga asperiores alias
-          eum at!
-        </p>
-      </article>
-      <article className="service-article">
-        <h2>Article</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
-          non reprehenderit illum, minima nihil laborum fuga asperiores alias
-          eum at!
-        </p>
-      </article>
+    <section className="services-page">
+      <h1 className="services-title">Albums</h1>
+
+      <div className="albums-grid">
+        {albums.map((album) => (
+          <article className="album-card" key={album.id}>
+            <img src={getAlbumCover(album.coverPath)} alt={`${album.title} cover`} />
+            <h2>{album.title}</h2>
+            <p>{album.artist} - {album.year}</p>
+          </article>
+        ))}
+      </div>
     </section>
   );
 };

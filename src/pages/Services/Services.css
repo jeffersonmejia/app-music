@@ -1,31 +1,52 @@
-.services-list {
-  width: 90%;
+.services-page {
+  width: min(90%, 1100px);
   margin: 0 auto;
-  padding-top: 1.25rem;
-}
-
-.service-article {
-  width: 100%;
-  padding: 1rem 0;
+  padding: 1.25rem 0 7rem;
   animation: anim 0.3s ease-in;
+}
+
+.services-title {
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.albums-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+}
+
+.album-card {
+  min-width: 0;
   border: none;
-  border-bottom: 1px solid rgba(255, 45, 85, 0.12);
 }
 
-.service-article:last-child {
-  border-bottom: none;
+.album-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0.8rem;
+  object-fit: cover;
 }
 
-.service-article h2 {
-  text-align: left;
+.album-card h2 {
+  margin-top: 0.65rem;
   padding: 0;
+  color: var(--color-text);
+  font-size: 0.98rem;
+  font-weight: 700;
+  text-align: left;
 }
 
-.service-article h2,
-.service-article p {
-  text-align: left;
+.album-card p {
+  margin: 0.2rem 0 0;
   color: var(--color-text-muted);
+  font-size: 0.88rem;
+  text-align: left;
 }
+
 @keyframes anim {
   from {
     opacity: 0.3;

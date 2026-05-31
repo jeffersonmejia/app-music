@@ -1,12 +1,10 @@
 import "./Header.css";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Header = () => {
-  const { pathname } = useLocation();
-
   return (
     <>
-      <header className={pathname === "/" ? "site-header home-header" : "site-header"}>
+      <header className="site-header">
         <nav className="site-nav" aria-label="Main navigation">
           <NavLink className="items-menu" to="/">
             Home
