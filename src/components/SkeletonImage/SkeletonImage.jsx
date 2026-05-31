@@ -9,22 +9,25 @@ export const SkeletonImage = ({
 	videoSrc,
 	isPlaying = false,
 }) => {
-	const [isLoaded, setIsLoaded] = useState(false)
+	const shouldShowVideo = isPlaying && videoSrc
+	const mediaKey = shouldShowVideo ? videoSrc : src
+	const [loadedMediaKey, setLoadedMediaKey] = useState(null)
+	const isLoaded = loadedMediaKey === mediaKey
 
 	return (
 		<span className={`skeleton-image ${className} ${isLoaded ? 'is-loaded' : ''}`}>
-			{isPlaying ? (
+			{shouldShowVideo ? (
 				<video
 					className={className}
 					src={videoSrc}
-					onLoadedData={() => setIsLoaded(true)}
+					onLoadedData={() => setLoadedMediaKey(mediaKey)}
 					autoPlay
 					muted
 					loop
 					playsInline
 				/>
 			) : (
-				<img className={className} src={src} alt={alt} onLoad={() => setIsLoaded(true)} />
+				<img className={className} src={src} alt={alt} onLoad={() => setLoadedMediaKey(mediaKey)} />
 			)}
 		</span>
 	)
@@ -34,6 +37,6 @@ SkeletonImage.propTypes = {
 	alt: PropTypes.string.isRequired,
 	className: PropTypes.string,
 	src: PropTypes.string.isRequired,
-	videoSrc: PropTypes.string.isRequired,
+	videoSrc: PropTypes.string,
 	isPlaying: PropTypes.bool,
 }

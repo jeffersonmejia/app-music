@@ -1,10 +1,12 @@
-import PropTypes from 'prop-types'
 import './Home.css'
 import alvaro from '../../assets/cover/010-alvaro.png'
 import alvaroVideo from '../../assets/video/011-alvaro.mp4'
 import { SkeletonImage } from '../../components/SkeletonImage/SkeletonImage'
+import { usePlayer } from '../../context/PlayerContext'
 
-export const HomePage = ({ isPlaying = false }) => {
+export const HomePage = () => {
+	const { isPlaying } = usePlayer()
+
 	return (
 		<figure className="home-cover">
 			<SkeletonImage
@@ -20,8 +22,4 @@ export const HomePage = ({ isPlaying = false }) => {
 			</figcaption>
 		</figure>
 	)
-}
-
-HomePage.propTypes = {
-	isPlaying: PropTypes.bool,
 }
