@@ -1,8 +1,9 @@
 import "./About.css";
-import cover001 from "../../assets/cover/001-feid.png";
-import cover003 from "../../assets/cover/003-feid.png";
-import cover006 from "../../assets/cover/006-feid.png";
-import cover008 from "../../assets/cover/008-feid.png";
+import cover011 from "../../assets/cover/011-mora.png";
+import cover016 from "../../assets/cover/016-ed.png";
+import cover017 from "../../assets/cover/017-ed.png";
+import cover018 from "../../assets/cover/018-ed.png";
+import { SkeletonImage } from "../../components/SkeletonImage/SkeletonImage";
 
 const features = [
   {
@@ -19,7 +20,7 @@ const features = [
   },
 ];
 
-const aboutCovers = [cover001, cover003, cover006, cover008];
+const aboutCovers = [cover016, cover017, cover018, cover011];
 
 export const AboutPage = () => {
   return (
@@ -40,7 +41,7 @@ export const AboutPage = () => {
 
         <div className="about-covers" aria-label="Album covers">
           {aboutCovers.map((cover, index) => (
-            <img className={index === 0 ? "about-cover about-cover--large" : "about-cover"} src={cover} alt="Album cover" key={cover} />
+            <SkeletonImage className={index === 0 ? "about-cover about-cover--large" : "about-cover"} src={cover} alt="Album cover" key={cover} />
           ))}
         </div>
       </div>

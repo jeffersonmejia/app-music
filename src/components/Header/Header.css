@@ -60,16 +60,24 @@ h2 {
 
 @media (max-width: 520px) {
   .site-header {
-    padding-inline: 0.5rem;
+    padding-inline: 0.75rem;
   }
 
   .site-nav {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 0.2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .items-menu {
-    padding-inline: 0.7rem;
-    font-size: 0.85rem;
+    flex: 0 0 auto;
+    padding-inline: 0.85rem;
+    font-size: 0.84rem;
   }
 }

@@ -1,7 +1,8 @@
 import "./Contact.css";
-import cover002 from "../../assets/cover/002-feid.png";
-import cover004 from "../../assets/cover/004-feid.png";
-import cover007 from "../../assets/cover/007-feid.png";
+import cover012 from "../../assets/cover/012-mora.png";
+import cover014 from "../../assets/cover/014-mora.png";
+import cover015 from "../../assets/cover/015-mora.png";
+import { SkeletonImage } from "../../components/SkeletonImage/SkeletonImage";
 
 const contactOptions = [
   {
@@ -31,9 +32,9 @@ export const ContactPage = () => {
         </article>
 
         <div className="contact-hero__covers" aria-label="Album covers">
-          <img className="contact-cover contact-cover--large" src={cover002} alt="Album cover" />
-          <img className="contact-cover" src={cover004} alt="Album cover" />
-          <img className="contact-cover" src={cover007} alt="Album cover" />
+          <SkeletonImage className="contact-cover contact-cover--large" src={cover012} alt="Album cover" />
+          <SkeletonImage className="contact-cover" src={cover014} alt="Album cover" />
+          <SkeletonImage className="contact-cover" src={cover015} alt="Album cover" />
         </div>
       </div>
 

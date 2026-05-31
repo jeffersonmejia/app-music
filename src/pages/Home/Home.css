@@ -1,4 +1,5 @@
 .home-cover {
+	position: relative;
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -14,11 +15,72 @@
 	object-position: 80% 10%;
 }
 
+.home-cover .skeleton-image {
+	height: 100%;
+}
+
+.home-cover::after {
+	position: absolute;
+	inset: 0;
+	content: '';
+	background: rgba(0, 0, 0, 0.38);
+	pointer-events: none;
+}
+
+.home-cover__caption {
+	position: absolute;
+	left: 50%;
+	bottom: 6.6rem;
+	width: 100%;
+	z-index: 1;
+	max-width: min(30rem, calc(100% - 3rem));
+	text-align: center;
+	text-shadow: 0 2px 18px rgba(0, 0, 0, 0.34);
+	transform: translateX(-50%);
+}
+
+.home-cover__caption h1 {
+	color: white;
+	font-size: clamp(2.2rem, 7vw, 5rem);
+	font-weight: 800;
+	line-height: 0.9;
+	width: 100%;
+	text-align: center;
+}
+
+.home-cover__caption p {
+	max-width: 30rem;
+	text-align: center;
+	width: 100%;
+	margin: 0.75rem 0 0;
+	color: rgba(255, 255, 255, 0.88);
+	font-size: 1rem;
+	line-height: 1.4;
+	text-align: center;
+}
+
 @keyframes anim {
 	from {
 		opacity: 0.3;
 	}
 	to {
 		opacity: 1;
+	}
+}
+
+@media (max-width: 560px) {
+	.home-cover img {
+		object-position: 72% 12%;
+	}
+
+	.home-cover__caption {
+		left: 50%;
+		bottom: 8.2rem;
+		max-width: calc(100% - 2rem);
+		padding: 0.85rem;
+	}
+
+	.home-cover__caption p {
+		font-size: 0.88rem;
 	}
 }

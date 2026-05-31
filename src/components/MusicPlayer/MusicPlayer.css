@@ -174,17 +174,28 @@
   }
 
   .music-player__controls {
-    flex-direction: row;
-    padding: 0.85rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.65rem 0.85rem;
+    padding: 0.8rem;
     border-radius: 1rem;
   }
 
+  .music-player__info {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
   .music-player__info strong {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .music-player__info span {
-    font-size: 0.76rem;
+    font-size: 0.8rem;
+  }
+
+  .music-player__actions {
+    justify-content: center;
   }
 
   .player-control {
@@ -192,7 +203,11 @@
     height: 2.35rem;
   }
 
+  .music-player__volume {
+    justify-content: flex-end;
+  }
+
   .music-player__volume input {
-    width: 3.75rem;
+    width: min(7rem, 28vw);
   }
 }
