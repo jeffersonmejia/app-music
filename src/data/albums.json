@@ -1,72 +1,72 @@
 [
-  {
-    "id": 1,
-    "title": "Asi Como Suena",
-    "artist": "Feid",
-    "year": 2017,
-    "coverPath": "001-feid.png"
-  },
-  {
-    "id": 2,
-    "title": "19",
-    "artist": "Feid",
-    "year": 2019,
-    "coverPath": "002-feid.png"
-  },
-  {
-    "id": 3,
-    "title": "Ferxxo Vol. 1: M.O.R",
-    "artist": "Feid",
-    "year": 2020,
-    "coverPath": "003-feid.png"
-  },
-  {
-    "id": 4,
-    "title": "Inter Shibuya - La Mafia",
-    "artist": "Feid",
-    "year": 2021,
-    "coverPath": "004-feid.png"
-  },
-  {
-    "id": 5,
-    "title": "Feliz Cumpleanos Ferxxo Te Pirateamos el Album",
-    "artist": "Feid",
-    "year": 2022,
-    "coverPath": "005-feid.png"
-  },
-  {
-    "id": 6,
-    "title": "Mor, No Le Temas a la Oscuridad",
-    "artist": "Feid",
-    "year": 2023,
-    "coverPath": "006-feid.png"
-  },
-  {
-    "id": 7,
-    "title": "FERXXOCALIPSIS",
-    "artist": "Feid",
-    "year": 2023,
-    "coverPath": "007-feid.png"
-  },
-  {
-    "id": 8,
-    "title": "Los 9 de Ferxxo y Sky Rompiendo",
-    "artist": "Feid",
-    "year": 2024,
-    "coverPath": "008-feid.png"
-  },
-  {
-    "id": 9,
-    "title": "Ferxxo Vol X: Sagrado",
-    "artist": "Feid",
-    "year": 2025,
-    "coverPath": "009-feid.png"
-  },
-  {
-    "id": 10,
-    "title": "Green Print",
-    "artist": "Feid",
-    "year": 2025,
-    "coverPath": "019-feid.png"
-  }
+	{
+		"id": 1,
+		"title": "Asi Como Suena",
+		"artist": "Feid",
+		"year": 2017,
+		"coverPath": "001-feid.png"
+	},
+	{
+		"id": 2,
+		"title": "19",
+		"artist": "Feid",
+		"year": 2019,
+		"coverPath": "002-feid.png"
+	},
+	{
+		"id": 3,
+		"title": "Ferxxo Vol. 1: M.O.R",
+		"artist": "Feid",
+		"year": 2020,
+		"coverPath": "003-feid.png"
+	},
+	{
+		"id": 4,
+		"title": "Inter Shibuya - La Mafia",
+		"artist": "Feid",
+		"year": 2021,
+		"coverPath": "004-feid.png"
+	},
+	{
+		"id": 5,
+		"title": "Feliz Cumpleanos Ferxxo Te Pirateamos el Album",
+		"artist": "Feid",
+		"year": 2022,
+		"coverPath": "005-feid.png"
+	},
+	{
+		"id": 6,
+		"title": "Mor, No Le Temas a la Oscuridad",
+		"artist": "Feid",
+		"year": 2023,
+		"coverPath": "006-feid.png"
+	},
+	{
+		"id": 7,
+		"title": "FERXXOCALIPSIS",
+		"artist": "Feid",
+		"year": 2023,
+		"coverPath": "007-feid.png"
+	},
+	{
+		"id": 8,
+		"title": "Los 9 de Ferxxo y Sky Rompiendo",
+		"artist": "Feid",
+		"year": 2024,
+		"coverPath": "008-feid.png"
+	},
+	{
+		"id": 9,
+		"title": "Ferxxo Vol X: Sagrado",
+		"artist": "Feid",
+		"year": 2025,
+		"coverPath": "009-feid.png"
+	},
+	{
+		"id": 10,
+		"title": "Green Print",
+		"artist": "Feid",
+		"year": 2026,
+		"coverPath": "019-feid.png"
+	}
 ]
