@@ -1,18 +1,39 @@
 import "./About.css";
 
+const features = [
+  {
+    title: "Millones de canciones",
+    text: "Escucha lanzamientos, clásicos, álbumes completos y playlists para cada momento.",
+  },
+  {
+    title: "Tu música contigo",
+    text: "Reproduce tus favoritos, descubre artistas y sigue escuchando mientras exploras.",
+  },
+  {
+    title: "Sonido para cada plan",
+    text: "Encuentra música para estudiar, entrenar, viajar o simplemente quedarte en el mood.",
+  },
+];
+
 export const AboutPage = () => {
   return (
-    <article className="about-article">
-      <h1 className="main-title">About us</h1>
-      <h3>Welcome to my site</h3>
-      <small>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-        aperiam iusto quam, eaque omnis assumenda vel repellendus velit nesciunt
-        reiciendis, soluta et enim id, adipisci modi ipsa maxime earum?
-        Obcaecati atque consectetur aliquid sequi quisquam velit asperiores enim
-        quis voluptatum, aspernatur temporibus id excepturi impedit placeat
-        fugiat? Id, incidunt asperiores.
-      </small>
-    </article>
+    <section className="about-page">
+      <div className="about-hero">
+        <h1>Toda la música que amas, lista para sonar.</h1>
+        <p>
+          Explora álbumes, artistas y canciones con una experiencia pensada para
+          escuchar sin interrupciones.
+        </p>
+      </div>
+
+      <div className="about-grid">
+        {features.map((feature) => (
+          <article className="about-card" key={feature.title}>
+            <h2>{feature.title}</h2>
+            <p>{feature.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 };

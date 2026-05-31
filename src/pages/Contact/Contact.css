@@ -1,19 +1,80 @@
-.contact-article {
-  padding: 1rem;
-  width: 90%;
-  margin: auto;
+.contact-page {
+  width: min(90%, 1100px);
+  margin: 0 auto;
+  padding: 1.5rem 0 7rem;
   animation: 0.3s ease-in anim;
 }
 
-h3 {
-  color: rgb(150, 150, 150);
-  text-align: center;
-  padding-bottom: 1rem;
-  font-weight: 400;
+.contact-hero {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
-small {
-  text-align: justify;
-  display: block;
-  color: rgb(100, 100, 100);
+.contact-hero h1 {
+  max-width: 900px;
+  color: var(--color-text);
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  font-weight: 800;
+  line-height: 0.98;
+}
+
+.contact-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.contact-card {
+  min-height: 13rem;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.contact-card--featured {
+  grid-column: span 2;
+}
+
+.contact-card h2 {
+  padding: 0;
+  color: var(--color-text);
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.contact-card--featured h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.contact-card p {
+  margin: 1rem 0 0;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  text-align: left;
+}
+
+.contact-card a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--apple-music-pink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 880px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-grid,
+  .contact-card--featured {
+    grid-template-columns: 1fr;
+    grid-column: auto;
+  }
 }

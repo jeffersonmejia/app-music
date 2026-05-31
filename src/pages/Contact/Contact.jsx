@@ -1,18 +1,47 @@
 import "./Contact.css";
 
+const contactOptions = [
+  {
+    title: "Planes",
+    text: "Consulta opciones individuales, familiares o para estudiantes.",
+    value: "support@music.app",
+  },
+  {
+    title: "Artistas",
+    text: "Información para compartir música, lanzamientos y perfiles de artista.",
+    value: "curators@music.app",
+  },
+  {
+    title: "Ayuda",
+    text: "Soporte para cuenta, reproducción, biblioteca y acceso al servicio.",
+    value: "feedback@music.app",
+  },
+];
+
 export const ContactPage = () => {
   return (
-    <article className="contact-article">
-      <h1 className="main-title">Contact us</h1>
-      <h3>Welcome to my site</h3>
-      <small>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-        aperiam iusto quam, eaque omnis assumenda vel repellendus velit nesciunt
-        reiciendis, soluta et enim id, adipisci modi ipsa maxime earum?
-        Obcaecati atque consectetur aliquid sequi quisquam velit asperiores enim
-        quis voluptatum, aspernatur temporibus id excepturi impedit placeat
-        fugiat? Id, incidunt asperiores.
-      </small>
-    </article>
+    <section className="contact-page">
+      <div className="contact-hero">
+        <h1>Soporte para que la música nunca se detenga.</h1>
+      </div>
+
+      <div className="contact-grid">
+        <article className="contact-card contact-card--featured">
+          <h2>Escucha, descubre y comparte.</h2>
+          <p>
+            Encuentra ayuda para planes, biblioteca, reproducción y formas de
+            disfrutar tu música en todos tus dispositivos.
+          </p>
+        </article>
+
+        {contactOptions.map((option) => (
+          <article className="contact-card" key={option.title}>
+            <h2>{option.title}</h2>
+            <p>{option.text}</p>
+            <a href={`mailto:${option.value}`}>{option.value}</a>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 };
