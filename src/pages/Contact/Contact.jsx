@@ -1,4 +1,7 @@
 import "./Contact.css";
+import cover002 from "../../assets/cover/002-feid.png";
+import cover004 from "../../assets/cover/004-feid.png";
+import cover007 from "../../assets/cover/007-feid.png";
 
 const contactOptions = [
   {
@@ -22,7 +25,16 @@ export const ContactPage = () => {
   return (
     <section className="contact-page">
       <div className="contact-hero">
-        <h1>Soporte para que la música nunca se detenga.</h1>
+        <article className="contact-hero__copy">
+          <h1>Soporte para que la música nunca se detenga.</h1>
+          <p>Planes, artistas, biblioteca y ayuda para seguir escuchando en todos tus dispositivos.</p>
+        </article>
+
+        <div className="contact-hero__covers" aria-label="Album covers">
+          <img className="contact-cover contact-cover--large" src={cover002} alt="Album cover" />
+          <img className="contact-cover" src={cover004} alt="Album cover" />
+          <img className="contact-cover" src={cover007} alt="Album cover" />
+        </div>
       </div>
 
       <div className="contact-grid">

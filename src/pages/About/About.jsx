@@ -1,4 +1,8 @@
 import "./About.css";
+import cover001 from "../../assets/cover/001-feid.png";
+import cover003 from "../../assets/cover/003-feid.png";
+import cover006 from "../../assets/cover/006-feid.png";
+import cover008 from "../../assets/cover/008-feid.png";
 
 const features = [
   {
@@ -15,15 +19,30 @@ const features = [
   },
 ];
 
+const aboutCovers = [cover001, cover003, cover006, cover008];
+
 export const AboutPage = () => {
   return (
     <section className="about-page">
       <div className="about-hero">
-        <h1>Toda la música que amas, lista para sonar.</h1>
-        <p>
-          Explora álbumes, artistas y canciones con una experiencia pensada para
-          escuchar sin interrupciones.
-        </p>
+        <article className="about-hero__copy">
+          <h1>Toda la música que amas, lista para sonar.</h1>
+          <p>
+            Explora álbumes, artistas y canciones con una experiencia pensada
+            para escuchar sin interrupciones.
+          </p>
+          <div className="about-highlights">
+            <span>Playlists para cada mood</span>
+            <span>Álbumes completos y lanzamientos</span>
+            <span>Escucha continua mientras navegas</span>
+          </div>
+        </article>
+
+        <div className="about-covers" aria-label="Album covers">
+          {aboutCovers.map((cover, index) => (
+            <img className={index === 0 ? "about-cover about-cover--large" : "about-cover"} src={cover} alt="Album cover" key={cover} />
+          ))}
+        </div>
       </div>
 
       <div className="about-grid">

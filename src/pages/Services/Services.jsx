@@ -14,6 +14,7 @@ const getAlbumCover = (coverPath) => {
 export const ServicesPage = () => {
   return (
     <section className="services-page">
+      <h1 className="services-hero-title">Tus canciones favoritas en un solo lugar.</h1>
       <h1 className="services-title">Albums</h1>
 
       <div className="albums-grid">
