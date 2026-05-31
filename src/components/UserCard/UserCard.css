@@ -1,0 +1,46 @@
+h5,
+small,
+h6 {
+  text-align: center;
+  color: rgb(150, 150, 150);
+  display: block;
+}
+
+figure {
+  border: 1px rgb(235, 235, 235);
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 1.5rem;
+}
+
+h6 {
+  font-weight: italic;
+  padding: 0.5rem 0;
+}
+
+figcaption {
+  background-color: rgb(235, 235, 235);
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+  border-radius: 1.5rem;
+  padding: 0.5rem;
+}
+
+.active,
+.inactive {
+  margin: auto;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border-radius: 1.55em;
+  width: fit-content;
+}
+
+.active {
+  background-color: rgb(198, 255, 198);
+  color: green;
+}
+.inactive {
+  background-color: rgb(255, 198, 198);
+  color: red;
+}

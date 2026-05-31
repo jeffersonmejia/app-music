@@ -1,0 +1,18 @@
+.app-main {
+  position: relative;
+  flex: 1;
+  width: 100%;
+}
+
+.app-main > div {
+  height: auto;
+}
+
+.app-main--home {
+  flex: 0 0 auto;
+  width: min(90%, 980px);
+  height: 80vh;
+  margin: 1rem auto 0;
+  overflow: hidden;
+  border-radius: 3.5rem;
+}

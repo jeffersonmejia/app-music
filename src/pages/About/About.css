@@ -1,0 +1,19 @@
+.about-article {
+  padding: 1rem;
+  width: 90%;
+  margin: auto;
+  animation: 0.3s ease-in anim;
+}
+
+h3 {
+  color: rgb(150, 150, 150);
+  text-align: center;
+  padding-bottom: 1rem;
+  font-weight: 400;
+}
+
+small {
+  text-align: justify;
+  display: block;
+  color: rgb(100, 100, 100);
+}

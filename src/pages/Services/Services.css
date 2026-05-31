@@ -1,0 +1,36 @@
+.services-list {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1.25rem;
+}
+
+.service-article {
+  width: 100%;
+  padding: 1rem 0;
+  animation: anim 0.3s ease-in;
+  border: none;
+  border-bottom: 1px solid rgba(255, 45, 85, 0.12);
+}
+
+.service-article:last-child {
+  border-bottom: none;
+}
+
+.service-article h2 {
+  text-align: left;
+  padding: 0;
+}
+
+.service-article h2,
+.service-article p {
+  text-align: left;
+  color: var(--color-text-muted);
+}
+@keyframes anim {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}

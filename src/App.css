@@ -1,0 +1,40 @@
+h2 {
+	text-align: center;
+	width: 100;
+	color: black;
+	font-weight: 400;
+	margin: 1rem 0;
+	font-size: 1.5rem;
+}
+
+img,
+button,
+p {
+	display: block;
+	margin: 0 auto;
+}
+
+img {
+	width: 12rem;
+}
+
+button {
+	border: none;
+	background-color: rgb(255, 224, 255);
+	padding: 1rem;
+	border-radius: 3rem;
+	color: rgb(191, 58, 191);
+	margin-top: 1rem;
+	cursor: pointer;
+	transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+	background-color: rgb(255, 197, 255);
+}
+
+p {
+	margin-top: 1rem;
+	text-align: center;
+	color: rgb(150, 150, 150);
+}

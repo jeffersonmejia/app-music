@@ -1,0 +1,24 @@
+.home-cover {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	animation: anim 0.3s ease-in;
+}
+
+.home-cover img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 0;
+	object-fit: cover;
+	object-position: 80% 10%;
+}
+
+@keyframes anim {
+	from {
+		opacity: 0.3;
+	}
+	to {
+		opacity: 1;
+	}
+}
