@@ -28,10 +28,12 @@ export const MusicPlayer = ({
 	const fadeRef = useRef(null)
 	const { pathname } = useLocation()
 	const storageKey = `music-player-${track.id}`
-	const savedPlayer = getSavedPlayer(storageKey)
-	const savedVolume = Number.isFinite(savedPlayer.volume) ? savedPlayer.volume : 0.75
-	const initialVolumeRef = useRef(savedVolume)
+	const initialSavedPlayer = getSavedPlayer(storageKey)
+	const savedVolume = Number.isFinite(initialSavedPlayer.volume)
+		? initialSavedPlayer.volume
+		: 0.75
 	const isPlayingRef = useRef(false)
+	const storageKeyRef = useRef(storageKey)
 	const volumeRef = useRef(savedVolume)
 	const [isPlaying, setIsPlaying] = useState(false)
 	const [volume, setVolume] = useState(savedVolume)
@@ -42,16 +44,16 @@ export const MusicPlayer = ({
 			const audio = audioRef.current
 
 			localStorage.setItem(
-				storageKey,
+				storageKeyRef.current,
 				JSON.stringify({
-					currentTime: audio?.currentTime ?? savedPlayer.currentTime ?? 0,
+					currentTime: audio?.currentTime ?? 0,
 					isPlaying: isPlayingRef.current,
 					volume: volumeRef.current,
 					...state,
 				}),
 			)
 		},
-		[savedPlayer.currentTime, storageKey],
+		[],
 	)
 
 	const fadeVolumeTo = useCallback((targetVolume, onComplete) => {
@@ -142,10 +144,13 @@ export const MusicPlayer = ({
 		if (!audio) return undefined
 
 		clearInterval(fadeRef.current)
-		audio.currentTime = Number.isFinite(savedPlayer.currentTime)
-			? savedPlayer.currentTime
+
+		const savedTrackState = getSavedPlayer(storageKey)
+		storageKeyRef.current = storageKey
+		audio.currentTime = Number.isFinite(savedTrackState.currentTime)
+			? savedTrackState.currentTime
 			: 0
-		audio.volume = initialVolumeRef.current
+		audio.volume = volumeRef.current
 
 		const saveCurrentTime = () => {
 			savePlayerState({ currentTime: audio.currentTime })
@@ -161,7 +166,7 @@ export const MusicPlayer = ({
 		audio.addEventListener('timeupdate', saveCurrentTime)
 		audio.addEventListener('ended', handleEnded)
 
-		if (savedPlayer.isPlaying || isPlayingRef.current) {
+		if (savedTrackState.isPlaying || isPlayingRef.current) {
 			audio.volume = 0
 			audio
 				.play()
@@ -169,10 +174,10 @@ export const MusicPlayer = ({
 					setIsPlaying(true)
 					onPlayingChange?.(true)
 					isPlayingRef.current = true
-					fadeVolumeTo(initialVolumeRef.current)
+					fadeVolumeTo(volumeRef.current)
 				})
 				.catch(() => {
-					audio.volume = initialVolumeRef.current
+					audio.volume = volumeRef.current
 					setIsPlaying(false)
 					onPlayingChange?.(false)
 					isPlayingRef.current = false
@@ -194,8 +199,7 @@ export const MusicPlayer = ({
 		fadeVolumeTo,
 		onPlayingChange,
 		savePlayerState,
-		savedPlayer.currentTime,
-		savedPlayer.isPlaying,
+		storageKey,
 		track.audioSrc,
 	])
 

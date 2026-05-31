@@ -7,16 +7,6 @@
 		"coverPath": "020-alvaro.png",
 		"audioPath": "020-alvaro.mp3",
 		"videoPath": "020-alvaro.mp4",
-		"phrase": "Estaría cool que te quedes"
-	},
-	{
-		"id": 2,
-		"title": "Funeral",
-		"artist": "Alvaro Diaz",
-		"album": "Sayonara",
-		"coverPath": "011-alvaro.png",
-		"audioPath": "011-alvaro.mp3",
-		"videoPath": "011-alvaro.mp4",
-		"phrase": "Lo de nosotros tienes que superar."
+		"phrase": "Estaría cool que te quedes."
 	}
 ]
