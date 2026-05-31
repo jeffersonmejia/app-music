@@ -1,24 +1,24 @@
 import './Home.css'
-import alvaro from '../../assets/cover/010-alvaro.png'
-import alvaroVideo from '../../assets/video/011-alvaro.mp4'
 import { SkeletonImage } from '../../components/SkeletonImage/SkeletonImage'
 import { usePlayer } from '../../context/PlayerContext'
 
 export const HomePage = () => {
-	const { isPlaying } = usePlayer()
+	const { isPlaying, track } = usePlayer()
+
+	if (!track) return null
 
 	return (
 		<figure className="home-cover">
 			<SkeletonImage
-				src={alvaro}
-				videoSrc={alvaroVideo}
-				alt="Álbum"
+				src={track.coverSrc}
+				videoSrc={track.videoSrc}
+				alt={track.album}
 				isPlaying={isPlaying}
 			/>
 
 			<figcaption className="home-cover__caption">
-				<h1>Sayonara</h1>
-				<p>Lo de nosotros tienes que superar.</p>
+				<h1>{track.album}</h1>
+				<p>{track.phrase}</p>
 			</figcaption>
 		</figure>
 	)

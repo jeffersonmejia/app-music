@@ -16,12 +16,19 @@ const getSavedPlayer = (storageKey) => {
 	}
 }
 
-export const MusicPlayer = ({ artist, audioSrc, title, onPlayingChange }) => {
+export const MusicPlayer = ({
+	canPlayNext,
+	canPlayPrevious,
+	onNextTrack,
+	onPlayingChange,
+	onPreviousTrack,
+	track,
+}) => {
 	const audioRef = useRef(null)
 	const fadeRef = useRef(null)
 	const { pathname } = useLocation()
-	const storageKey = `music-player-${title}`
-	const [savedPlayer] = useState(() => getSavedPlayer(storageKey))
+	const storageKey = `music-player-${track.id}`
+	const savedPlayer = getSavedPlayer(storageKey)
 	const savedVolume = Number.isFinite(savedPlayer.volume) ? savedPlayer.volume : 0.75
 	const initialVolumeRef = useRef(savedVolume)
 	const isPlayingRef = useRef(false)
@@ -134,6 +141,7 @@ export const MusicPlayer = ({ artist, audioSrc, title, onPlayingChange }) => {
 
 		if (!audio) return undefined
 
+		clearInterval(fadeRef.current)
 		audio.currentTime = Number.isFinite(savedPlayer.currentTime)
 			? savedPlayer.currentTime
 			: 0
@@ -153,7 +161,7 @@ export const MusicPlayer = ({ artist, audioSrc, title, onPlayingChange }) => {
 		audio.addEventListener('timeupdate', saveCurrentTime)
 		audio.addEventListener('ended', handleEnded)
 
-		if (savedPlayer.isPlaying) {
+		if (savedPlayer.isPlaying || isPlayingRef.current) {
 			audio.volume = 0
 			audio
 				.play()
@@ -188,27 +196,29 @@ export const MusicPlayer = ({ artist, audioSrc, title, onPlayingChange }) => {
 		savePlayerState,
 		savedPlayer.currentTime,
 		savedPlayer.isPlaying,
+		track.audioSrc,
 	])
 
 	return (
 		<section
-			className={`music-player${pathname === '/' ? ' music-player--home' : ''}`}
-			aria-label={`${title} player`}
+			className={`music-player${pathname === '/' || pathname === '/home' ? ' music-player--home' : ''}`}
+			aria-label={`${track.title} player`}
 		>
-			<audio ref={audioRef} src={audioSrc} preload="metadata" />
+			<audio ref={audioRef} src={track.audioSrc} preload="metadata" />
 
 			<div className="music-player__controls">
 				<div className="music-player__info">
-					<strong>{title}</strong>
-					<span>{artist}</span>
+					<strong>{track.title}</strong>
+					<span>{track.artist}</span>
 				</div>
 
 				<div className="music-player__actions" aria-label="Playback controls">
 					<button
 						className="player-control"
 						type="button"
-						disabled
-						aria-label="Previous blocked"
+						disabled={!canPlayPrevious}
+						aria-label="Previous track"
+						onClick={onPreviousTrack}
 					>
 						<SkipBack size={20} strokeWidth={2.2} />
 					</button>
@@ -230,8 +240,9 @@ export const MusicPlayer = ({ artist, audioSrc, title, onPlayingChange }) => {
 					<button
 						className="player-control"
 						type="button"
-						disabled
-						aria-label="Next blocked"
+						disabled={!canPlayNext}
+						aria-label="Next track"
+						onClick={onNextTrack}
 					>
 						<SkipForward size={20} strokeWidth={2.2} />
 					</button>
@@ -256,8 +267,19 @@ export const MusicPlayer = ({ artist, audioSrc, title, onPlayingChange }) => {
 }
 
 MusicPlayer.propTypes = {
-	artist: PropTypes.string.isRequired,
-	audioSrc: PropTypes.string.isRequired,
-	title: PropTypes.string.isRequired,
+	canPlayNext: PropTypes.bool.isRequired,
+	canPlayPrevious: PropTypes.bool.isRequired,
 	onPlayingChange: PropTypes.func,
+	onNextTrack: PropTypes.func.isRequired,
+	onPreviousTrack: PropTypes.func.isRequired,
+	track: PropTypes.shape({
+		artist: PropTypes.string.isRequired,
+		audioSrc: PropTypes.string.isRequired,
+		coverSrc: PropTypes.string.isRequired,
+		id: PropTypes.number.isRequired,
+		album: PropTypes.string.isRequired,
+		phrase: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+		videoSrc: PropTypes.string,
+	}).isRequired,
 }
