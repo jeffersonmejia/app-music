@@ -6,7 +6,7 @@ import { useTheme } from '../../context/theme'
 
 const navItems = [
 	{ icon: Home, label: 'Inicio', to: '/' },
-	{ icon: Mail, label: 'Contacto', to: '/contact' },
+	{ hideOnMobile: true, icon: Mail, label: 'Contacto', to: '/contact' },
 	{ icon: Info, label: 'Acerca', to: '/about' },
 	{ icon: Grid3X3, label: 'Servicios', to: '/services' },
 ]
@@ -59,7 +59,7 @@ export const Header = () => {
 				<nav className="site-nav" aria-label="Main navigation">
 					{navItems.map((item) => (
 						<NavLink
-							className="items-menu"
+							className={`items-menu ${item.hideOnMobile ? 'items-menu--mobile-hidden' : ''}`}
 							key={item.to}
 							onClick={(event) => handleNavigation(event, item.to)}
 							to={item.to}

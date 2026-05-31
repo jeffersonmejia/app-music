@@ -25,7 +25,10 @@ export const MusicPlayer = ({
 	track,
 }) => {
 	const audioRef = useRef(null)
+	const audioContextRef = useRef(null)
 	const fadeRef = useRef(null)
+	const gainNodeRef = useRef(null)
+	const sourceNodeRef = useRef(null)
 	const { pathname } = useLocation()
 	const storageKey = `music-player-${track.id}`
 	const initialSavedPlayer = getSavedPlayer(storageKey)
@@ -33,6 +36,7 @@ export const MusicPlayer = ({
 		? initialSavedPlayer.volume
 		: 0.75
 	const isPlayingRef = useRef(false)
+	const outputVolumeRef = useRef(savedVolume)
 	const storageKeyRef = useRef(storageKey)
 	const volumeRef = useRef(savedVolume)
 	const [isPlaying, setIsPlaying] = useState(false)
@@ -56,6 +60,51 @@ export const MusicPlayer = ({
 		[],
 	)
 
+	const ensureAudioGraph = useCallback(async () => {
+		const audio = audioRef.current
+		const AudioContext = window.AudioContext || window.webkitAudioContext
+
+		if (!audio || !AudioContext) {
+			return false
+		}
+
+		if (!audioContextRef.current) {
+			audioContextRef.current = new AudioContext()
+		}
+
+		if (!sourceNodeRef.current) {
+			sourceNodeRef.current = audioContextRef.current.createMediaElementSource(audio)
+			gainNodeRef.current = audioContextRef.current.createGain()
+			gainNodeRef.current.gain.value = outputVolumeRef.current
+			sourceNodeRef.current.connect(gainNodeRef.current)
+			gainNodeRef.current.connect(audioContextRef.current.destination)
+		}
+
+		if (audioContextRef.current.state === 'suspended') {
+			await audioContextRef.current.resume()
+		}
+
+		return true
+	}, [])
+
+	const setOutputVolume = useCallback((nextVolume) => {
+		const audio = audioRef.current
+		const safeVolume = Math.min(1, Math.max(0, nextVolume))
+
+		outputVolumeRef.current = safeVolume
+
+		if (gainNodeRef.current && audioContextRef.current) {
+			gainNodeRef.current.gain.setValueAtTime(
+				safeVolume,
+				audioContextRef.current.currentTime,
+			)
+		}
+
+		if (audio) {
+			audio.volume = gainNodeRef.current ? 1 : safeVolume
+		}
+	}, [])
+
 	const fadeVolumeTo = useCallback((targetVolume, onComplete) => {
 		const audio = audioRef.current
 
@@ -63,7 +112,7 @@ export const MusicPlayer = ({
 
 		clearInterval(fadeRef.current)
 
-		const startVolume = audio.volume
+		const startVolume = outputVolumeRef.current
 		const steps = Math.max(1, FADE_DURATION_MS / FADE_STEP_MS)
 		const volumeStep = (targetVolume - startVolume) / steps
 		let currentStep = 0
@@ -71,15 +120,15 @@ export const MusicPlayer = ({
 		fadeRef.current = setInterval(() => {
 			currentStep += 1
 			const nextVolume = startVolume + volumeStep * currentStep
-			audio.volume = Math.min(1, Math.max(0, nextVolume))
+			setOutputVolume(nextVolume)
 
 			if (currentStep >= steps) {
 				clearInterval(fadeRef.current)
-				audio.volume = targetVolume
+				setOutputVolume(targetVolume)
 				onComplete?.()
 			}
 		}, FADE_STEP_MS)
-	}, [])
+	}, [setOutputVolume])
 
 	const handleTogglePlay = async (event) => {
 		const audio = audioRef.current
@@ -90,7 +139,7 @@ export const MusicPlayer = ({
 		if (isPlaying) {
 			fadeVolumeTo(0, () => {
 				audio.pause()
-				audio.volume = volume
+				setOutputVolume(volume)
 				setIsPlaying(false)
 				onPlayingChange?.(false)
 				isPlayingRef.current = false
@@ -99,7 +148,8 @@ export const MusicPlayer = ({
 			return
 		}
 
-		audio.volume = 0
+		await ensureAudioGraph()
+		setOutputVolume(0)
 
 		try {
 			await audio.play()
@@ -116,7 +166,7 @@ export const MusicPlayer = ({
 			savePlayerState({ isPlaying: true })
 			fadeVolumeTo(volume)
 		} catch {
-			audio.volume = volume
+			setOutputVolume(volume)
 			setIsPlaying(false)
 			onPlayingChange?.(false)
 			isPlayingRef.current = false
@@ -131,8 +181,10 @@ export const MusicPlayer = ({
 		setVolume(nextVolume)
 		volumeRef.current = nextVolume
 
+		clearInterval(fadeRef.current)
+
 		if (audio) {
-			audio.volume = nextVolume
+			setOutputVolume(nextVolume)
 		}
 
 		savePlayerState({ volume: nextVolume })
@@ -150,7 +202,7 @@ export const MusicPlayer = ({
 		audio.currentTime = Number.isFinite(savedTrackState.currentTime)
 			? savedTrackState.currentTime
 			: 0
-		audio.volume = volumeRef.current
+		setOutputVolume(volumeRef.current)
 
 		const saveCurrentTime = () => {
 			savePlayerState({ currentTime: audio.currentTime })
@@ -167,7 +219,9 @@ export const MusicPlayer = ({
 		audio.addEventListener('ended', handleEnded)
 
 		if (savedTrackState.isPlaying || isPlayingRef.current) {
-			audio.volume = 0
+			ensureAudioGraph().then(() => {
+				setOutputVolume(0)
+			})
 			audio
 				.play()
 				.then(() => {
@@ -177,7 +231,7 @@ export const MusicPlayer = ({
 					fadeVolumeTo(volumeRef.current)
 				})
 				.catch(() => {
-					audio.volume = volumeRef.current
+					setOutputVolume(volumeRef.current)
 					setIsPlaying(false)
 					onPlayingChange?.(false)
 					isPlayingRef.current = false
@@ -197,8 +251,10 @@ export const MusicPlayer = ({
 		}
 	}, [
 		fadeVolumeTo,
+		ensureAudioGraph,
 		onPlayingChange,
 		savePlayerState,
+		setOutputVolume,
 		storageKey,
 		track.audioSrc,
 	])
