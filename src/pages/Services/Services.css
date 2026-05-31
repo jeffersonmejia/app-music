@@ -15,10 +15,17 @@
 }
 
 .services-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 1rem;
   color: var(--color-text);
   font-size: 1.6rem;
   font-weight: 700;
+}
+
+.services-title svg {
+  color: var(--apple-music-pink);
 }
 
 .albums-grid {
@@ -60,11 +67,19 @@
 }
 
 .album-card p {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   margin: 0;
   color: var(--color-text-muted);
   font-size: 0.86rem;
   line-height: 1.15;
   text-align: left;
+}
+
+.album-card p svg {
+  flex-shrink: 0;
+  color: var(--apple-music-pink);
 }
 
 @media (max-width: 560px) {

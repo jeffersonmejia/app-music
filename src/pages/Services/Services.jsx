@@ -1,6 +1,7 @@
 import "./Services.css";
 import albums from "../../data/albums.json";
 import { SkeletonImage } from "../../components/SkeletonImage/SkeletonImage";
+import { Disc3, Library } from "lucide-react";
 
 const albumCovers = import.meta.glob("../../assets/cover/*.png", {
   eager: true,
@@ -16,14 +17,20 @@ export const ServicesPage = () => {
   return (
     <section className="services-page">
       <h1 className="services-hero-title">Toda tu música, aquí.</h1>
-      <h1 className="services-title">Albums</h1>
+      <h1 className="services-title">
+        <Library size={24} strokeWidth={2.1} />
+        Albums
+      </h1>
 
       <div className="albums-grid">
         {albums.map((album) => (
           <article className="album-card" key={album.id}>
             <SkeletonImage src={getAlbumCover(album.coverPath)} alt={`${album.title} cover`} />
             <h2>{album.title}</h2>
-            <p>{album.artist} - {album.year}</p>
+            <p>
+              <Disc3 size={14} strokeWidth={2.1} />
+              {album.artist} - {album.year}
+            </p>
           </article>
         ))}
       </div>

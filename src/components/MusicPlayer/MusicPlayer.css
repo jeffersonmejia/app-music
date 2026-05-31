@@ -25,9 +25,9 @@
   gap: 0.9rem;
   width: 100%;
   padding: 0.7rem 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--color-border);
   border-radius: 1.25rem;
-  background: rgba(255, 255, 255, 0.74);
+  background: var(--color-surface-strong);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
   transition:

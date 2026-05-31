@@ -2,6 +2,7 @@ import { Pause, Play, SkipBack, SkipForward, Volume2 } from 'lucide-react'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useTheme } from '../../context/theme'
 import './MusicPlayer.css'
 
 const FADE_STEP_MS = 30
@@ -27,6 +28,7 @@ export const MusicPlayer = ({ artist, audioSrc, title, onPlayingChange }) => {
 	const volumeRef = useRef(savedVolume)
 	const [isPlaying, setIsPlaying] = useState(false)
 	const [volume, setVolume] = useState(savedVolume)
+	const { isDarkMode, setDarkMode } = useTheme()
 
 	const savePlayerState = useCallback(
 		(state) => {
@@ -70,8 +72,9 @@ export const MusicPlayer = ({ artist, audioSrc, title, onPlayingChange }) => {
 		}, FADE_STEP_MS)
 	}, [])
 
-	const handleTogglePlay = async () => {
+	const handleTogglePlay = async (event) => {
 		const audio = audioRef.current
+		const playButton = event.currentTarget
 
 		if (!audio) return
 
@@ -91,6 +94,13 @@ export const MusicPlayer = ({ artist, audioSrc, title, onPlayingChange }) => {
 
 		try {
 			await audio.play()
+			if (!isDarkMode) {
+				const rect = playButton.getBoundingClientRect()
+				setDarkMode(true, {
+					x: rect.left + rect.width / 2,
+					y: rect.top + rect.height / 2,
+				})
+			}
 			setIsPlaying(true)
 			onPlayingChange?.(true)
 			isPlayingRef.current = true

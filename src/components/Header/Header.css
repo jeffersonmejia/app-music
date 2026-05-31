@@ -15,15 +15,18 @@
   width: fit-content;
   margin: 0 auto;
   padding: 0.35rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.62);
+  background: var(--color-surface);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   pointer-events: auto;
 }
 
 .items-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   text-decoration: none;
   color: var(--color-text-muted);
   padding: 0.55rem 1rem;
@@ -35,6 +38,31 @@
     background 0.2s ease,
     color 0.2s ease,
     transform 0.2s ease;
+}
+
+.theme-toggle {
+  display: grid;
+  width: 2.15rem;
+  height: 2.15rem;
+  margin: 0;
+  padding: 0;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  color: var(--color-text-muted);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--apple-music-pink);
+}
+
+.theme-toggle:active {
+  transform: scale(0.96);
 }
 
 .items-menu:hover {
@@ -77,7 +105,7 @@ h2 {
 
   .items-menu {
     flex: 0 0 auto;
-    padding-inline: 0.85rem;
+    padding-inline: 0.75rem;
     font-size: 0.84rem;
   }
 }

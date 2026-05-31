@@ -19,7 +19,7 @@
   gap: 0.9rem;
   padding: 1.4rem;
   border-radius: 1.4rem;
-  background: rgba(255, 255, 255, 0.68);
+  background: var(--color-surface);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -50,6 +50,9 @@
 }
 
 .about-highlights span {
+  display: grid;
+  gap: 0.5rem;
+  align-content: space-between;
   min-height: 5.5rem;
   padding: 0.8rem;
   border-radius: 1rem;
@@ -57,7 +60,11 @@
   font-size: 0.95rem;
   font-weight: 800;
   line-height: 1.1;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--color-surface-strong);
+}
+
+.about-highlights svg {
+  color: var(--apple-music-pink);
 }
 
 .about-covers {
@@ -92,9 +99,14 @@
   min-height: 9rem;
   padding: 1rem;
   border-radius: 1.25rem;
-  background: rgba(255, 255, 255, 0.68);
+  background: var(--color-surface);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+}
+
+.about-card__icon {
+  margin-bottom: 0.75rem;
+  color: var(--apple-music-pink);
 }
 
 .about-card h2 {

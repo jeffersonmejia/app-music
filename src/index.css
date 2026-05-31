@@ -10,6 +10,10 @@
   --color-text: #1d1d1f;
   --color-text-muted: #6e6e73;
   --color-page: #fff7fa;
+  --color-surface: rgba(255, 255, 255, 0.68);
+  --color-surface-strong: rgba(255, 255, 255, 0.74);
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-skeleton: rgba(255, 45, 85, 0.1);
 }
 
 body {
@@ -31,6 +35,31 @@ body {
   background: var(--color-page);
   padding-top: 4.25rem;
   animation: anim 0.3s ease-in;
+}
+
+body.dark-mode {
+  --color-text: #f5f5f7;
+  --color-text-muted: #b7b7bd;
+  --color-page: #111113;
+  --color-surface: rgba(34, 34, 38, 0.72);
+  --color-surface-strong: rgba(34, 34, 38, 0.82);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-skeleton: rgba(255, 255, 255, 0.08);
+}
+
+html.theme-transition::view-transition-old(root) {
+  animation: none;
+}
+
+html.theme-transition::view-transition-new(root) {
+  clip-path: circle(0 at var(--theme-x) var(--theme-y));
+  animation: theme-circle-reveal 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes theme-circle-reveal {
+  to {
+    clip-path: circle(150vmax at var(--theme-x) var(--theme-y));
+  }
 }
 
 #root {

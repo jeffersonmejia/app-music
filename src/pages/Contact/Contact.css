@@ -18,7 +18,7 @@
   min-height: 23rem;
   padding: 1.4rem;
   border-radius: 1.4rem;
-  background: rgba(255, 255, 255, 0.68);
+  background: var(--color-surface);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -70,7 +70,7 @@
   min-height: 11rem;
   padding: 1.25rem;
   border-radius: 1.25rem;
-  background: rgba(255, 255, 255, 0.68);
+  background: var(--color-surface);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -85,6 +85,11 @@
   font-size: 1.45rem;
   font-weight: 800;
   line-height: 1;
+}
+
+.contact-card__icon {
+  margin-bottom: 0.75rem;
+  color: var(--apple-music-pink);
 }
 
 .contact-card--featured h2 {

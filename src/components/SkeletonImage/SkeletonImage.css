@@ -5,14 +5,14 @@
 	height: 100%;
 	overflow: hidden;
 	border-radius: inherit;
-	background: rgba(255, 255, 255, 0.72);
+	background: var(--color-surface);
 }
 
 .skeleton-image::before {
 	position: absolute;
 	inset: 0;
 	content: '';
-	background: rgba(255, 45, 85, 0.1);
+	background: var(--color-skeleton);
 	animation: skeleton-loading 1s ease-in-out infinite alternate;
 }
 
