@@ -15,6 +15,16 @@
   margin: 1rem auto 0;
   overflow: hidden;
   border-radius: 3.5rem;
+  transition:
+    width 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-radius 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.app-main--home.app-main--cinema {
+  width: 90vw;
+  height: 84vh;
+  border-radius: 2rem;
 }
 
 @media (max-width: 560px) {
@@ -22,5 +32,10 @@
     width: calc(100% - 1rem);
     height: 70vh;
     border-radius: 2rem;
+  }
+
+  .app-main--home.app-main--cinema {
+    width: calc(100% - 1rem);
+    height: 70vh;
   }
 }

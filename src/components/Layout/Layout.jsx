@@ -10,12 +10,19 @@ import './Layout.css'
 export const Layout = ({ children }) => {
 	const { pathname } = useLocation()
 	const [isPlaying, setIsPlaying] = useState(false)
+	const isHome = pathname === '/' || pathname === '/home'
 
 	return (
 		<>
 			<Header></Header>
 
-			<main className={pathname === '/' ? 'app-main app-main--home' : 'app-main'}>
+			<main
+				className={
+					isHome
+						? `app-main app-main--home${isPlaying ? ' app-main--cinema' : ''}`
+						: 'app-main'
+				}
+			>
 				<PlayerContext.Provider value={{ isPlaying }}>
 					{children}
 				</PlayerContext.Provider>
