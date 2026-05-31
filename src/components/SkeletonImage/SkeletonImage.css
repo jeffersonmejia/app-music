@@ -5,15 +5,23 @@
 	height: 100%;
 	overflow: hidden;
 	border-radius: inherit;
-	background: var(--color-surface);
+	background: var(--color-skeleton);
 }
 
 .skeleton-image::before {
 	position: absolute;
 	inset: 0;
 	content: '';
-	background: var(--color-skeleton);
-	animation: skeleton-loading 1s ease-in-out infinite alternate;
+	background:
+		linear-gradient(
+			90deg,
+			transparent 0%,
+			var(--color-skeleton-highlight) 45%,
+			var(--color-skeleton-highlight) 55%,
+			transparent 100%
+		);
+	transform: translateX(-100%);
+	animation: skeleton-loading 1.2s ease-in-out infinite;
 }
 
 .skeleton-image img,
@@ -30,6 +38,10 @@
 	display: none;
 }
 
+.skeleton-image.is-loaded {
+	background: transparent;
+}
+
 .skeleton-image.is-loaded img,
 .skeleton-image.is-loaded video {
 	opacity: 1;
@@ -37,6 +49,6 @@
 
 @keyframes skeleton-loading {
 	to {
-		opacity: 0.42;
+		transform: translateX(100%);
 	}
 }

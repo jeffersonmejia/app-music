@@ -13,7 +13,8 @@
   --color-surface: rgba(255, 255, 255, 0.68);
   --color-surface-strong: rgba(255, 255, 255, 0.74);
   --color-border: rgba(0, 0, 0, 0.08);
-  --color-skeleton: rgba(255, 45, 85, 0.1);
+  --color-skeleton: #f0e4ea;
+  --color-skeleton-highlight: #fbf5f8;
 }
 
 body {
@@ -44,7 +45,8 @@ body.dark-mode {
   --color-surface: rgba(34, 34, 38, 0.72);
   --color-surface-strong: rgba(34, 34, 38, 0.82);
   --color-border: rgba(255, 255, 255, 0.12);
-  --color-skeleton: rgba(255, 255, 255, 0.08);
+  --color-skeleton: #25252a;
+  --color-skeleton-highlight: #33333a;
 }
 
 html.theme-transition::view-transition-old(root) {

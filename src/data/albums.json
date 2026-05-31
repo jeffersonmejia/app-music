@@ -61,5 +61,12 @@
     "artist": "Feid",
     "year": 2025,
     "coverPath": "009-feid.png"
+  },
+  {
+    "id": 10,
+    "title": "Green Print",
+    "artist": "Feid",
+    "year": 2025,
+    "coverPath": "019-feid.png"
   }
 ]
