@@ -32,8 +32,8 @@ body {
   animation: anim 0.3s ease-in;
 }
 
-div {
-  height: 90vh;
+#root {
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
 }
