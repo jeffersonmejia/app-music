@@ -5,6 +5,7 @@
   z-index: 20;
   width: min(36rem, calc(100% - 2rem));
   transform: translateX(-50%);
+  view-transition-name: music-player;
 }
 
 .music-player--home {
@@ -29,6 +30,10 @@
   background: rgba(255, 255, 255, 0.74);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .music-player__info {
@@ -149,6 +154,12 @@
   50% {
     transform: scale(1.1);
   }
+}
+
+::view-transition-old(music-player),
+::view-transition-new(music-player) {
+  animation-duration: 0.38s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @media (max-width: 560px) {
