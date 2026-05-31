@@ -10,9 +10,9 @@
   max-width: none;
   margin-bottom: 1.25rem;
   color: var(--color-text);
-  font-size: clamp(2.4rem, 7vw, 5.6rem);
+  font-size: clamp(2rem, 5.4vw, 4.5rem);
   font-weight: 800;
-  line-height: 0.98;
+  line-height: 1;
   text-wrap: balance;
 }
 

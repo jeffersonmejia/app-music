@@ -26,6 +26,8 @@ const contactOptions = [
   },
 ];
 
+const contactCovers = [cover012, cover014, cover015];
+
 export const ContactPage = () => {
   return (
     <section className="contact-page">
@@ -36,9 +38,9 @@ export const ContactPage = () => {
         </article>
 
         <div className="contact-hero__covers" aria-label="Album covers">
-          <SkeletonImage className="contact-cover contact-cover--large" src={cover012} alt="Album cover" />
-          <SkeletonImage className="contact-cover" src={cover014} alt="Album cover" />
-          <SkeletonImage className="contact-cover" src={cover015} alt="Album cover" />
+          {contactCovers.map((cover, index) => (
+            <SkeletonImage className={index === 0 ? "contact-cover contact-cover--large" : "contact-cover"} src={cover} alt="Album cover" key={cover} />
+          ))}
         </div>
       </div>
 

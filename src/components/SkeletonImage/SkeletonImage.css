@@ -15,13 +15,26 @@
 	background:
 		linear-gradient(
 			90deg,
-			transparent 0%,
-			var(--color-skeleton-highlight) 45%,
-			var(--color-skeleton-highlight) 55%,
-			transparent 100%
+			rgba(255, 255, 255, 0) 0%,
+			var(--color-skeleton-highlight) 42%,
+			var(--color-skeleton-highlight) 58%,
+			rgba(255, 255, 255, 0) 100%
 		);
 	transform: translateX(-100%);
-	animation: skeleton-loading 1.2s ease-in-out infinite;
+	animation: skeleton-loading 1.15s ease-in-out infinite;
+}
+
+.skeleton-image::after {
+	position: absolute;
+	inset: 12%;
+	content: '';
+	border-radius: 0.7rem;
+	background:
+		linear-gradient(var(--color-skeleton-highlight), var(--color-skeleton-highlight)) 0 0 / 58% 10% no-repeat,
+		linear-gradient(var(--color-skeleton-highlight), var(--color-skeleton-highlight)) 0 24% / 82% 8% no-repeat,
+		linear-gradient(var(--color-skeleton-highlight), var(--color-skeleton-highlight)) 0 44% / 46% 8% no-repeat;
+	opacity: 0.32;
+	pointer-events: none;
 }
 
 .skeleton-image img,
@@ -33,6 +46,10 @@
 }
 
 .skeleton-image.is-loaded::before {
+	display: none;
+}
+
+.skeleton-image.is-loaded::after {
 	display: none;
 }
 

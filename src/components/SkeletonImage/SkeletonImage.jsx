@@ -5,6 +5,7 @@ import './SkeletonImage.css'
 export const SkeletonImage = ({
 	alt,
 	className = '',
+	isPlaceholder = false,
 	src,
 	videoSrc,
 	isPlaying = false,
@@ -16,7 +17,7 @@ export const SkeletonImage = ({
 
 	return (
 		<span className={`skeleton-image ${className} ${isLoaded ? 'is-loaded' : ''}`}>
-			{shouldShowVideo ? (
+			{isPlaceholder ? null : shouldShowVideo ? (
 				<video
 					className={className}
 					src={videoSrc}
@@ -36,6 +37,7 @@ export const SkeletonImage = ({
 SkeletonImage.propTypes = {
 	alt: PropTypes.string.isRequired,
 	className: PropTypes.string,
+	isPlaceholder: PropTypes.bool,
 	src: PropTypes.string.isRequired,
 	videoSrc: PropTypes.string,
 	isPlaying: PropTypes.bool,

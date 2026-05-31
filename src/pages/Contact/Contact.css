@@ -17,10 +17,9 @@
   align-content: end;
   min-height: 23rem;
   padding: 1.4rem;
+  border: 1px solid var(--color-border);
   border-radius: 1.4rem;
-  background: var(--color-surface);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: var(--soft-card);
 }
 
 .contact-hero h1 {
@@ -69,10 +68,9 @@
 .contact-card {
   min-height: 11rem;
   padding: 1.25rem;
+  border: 1px solid var(--color-border);
   border-radius: 1.25rem;
-  background: var(--color-surface);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: var(--soft-card);
 }
 
 .contact-card--featured {
