@@ -29,6 +29,7 @@ body {
   margin: auto;
   color: var(--color-text);
   background: var(--color-page);
+  padding-top: 4.25rem;
   animation: anim 0.3s ease-in;
 }
 
